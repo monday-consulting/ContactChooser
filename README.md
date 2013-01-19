@@ -8,8 +8,7 @@ Example Usage
 
 ```js
 window.plugins.ContactChooser.chooseContact(function(contactInfo){
-    var data = JSON.parse(contactInfo); 
-    alert(data.displayName + " " + data.email);
+    alert(contactInfo.displayName + " " + contactInfo.email);
 });
 ```
 
