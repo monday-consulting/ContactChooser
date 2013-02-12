@@ -1,5 +1,4 @@
 #import "ContactChooser.h"
-#import <Cordova/JSONKit.h>
 #import <Cordova/CDVAvailability.h>
 
 @implementation ContactChooser
