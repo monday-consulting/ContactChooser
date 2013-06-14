@@ -7,7 +7,7 @@ This Plugin brings up a native iOS or Android contact-picker overlay, accessing 
 Example Usage
 
 ```js
-window.plugins.ContactChooser.chooseContact(function(contactInfo){
+window.plugins.ContactChooser.chooseContact(function(contactInfo) {
     alert(contactInfo.displayName + " " + contactInfo.email);
 });
 ```
@@ -23,11 +23,14 @@ The method which will return a JSON. Example:
 
 ## Requirements
 
-This has been tested for Cordova versions 2.2.0 and 2.3.0
+This has been successfully tested from Cordova 2.2.0 through to version 2.7.0.
 
 ## iOS
 
-### Cordova 2.3.x
+### Cordova 2.5.0 - 2.7.0
+In Cordova 2.5.0 the `config.xml` root element has changed to `<widget>`.
+
+### Cordova 2.3.0 / 2.4.0
 In Cordova 2.3.0 the format of the configuration has changed. The `.plist` based config has been dropped in favour of an XML file `config.xml`. The plugin has to be added to the `<plugins>` section of this file:
 
 ```xml
@@ -43,7 +46,7 @@ In Cordova 2.3.0 the format of the configuration has changed. The `.plist` based
 </cordova>
 ```
 
-### Cordova 2.2.x
+### Cordova 2.2.0
 
 Cordova 2.2.0 still uses the `Cordova.plist` configuration und thus the plugin has to be added as key value pair in the Plugins section of that file with key `ContactChooser` and value `ContactChooser`.
 
