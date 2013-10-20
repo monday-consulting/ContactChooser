@@ -32,6 +32,11 @@ You're using prior versions of Cordova? Check out our cordova-2.x branch.
 ## Installation Instructions
 
 The ContactChooser plugin provides support for Cordova's command-line tooling.
+Simply navigate to your project's root directory and execute the following command:
+
+```
+cordova plugin add https://github.com/monday-consulting/ContactChooser.git
+```
 
 ## MIT Licence
 
