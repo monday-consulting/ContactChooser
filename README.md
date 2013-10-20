@@ -1,14 +1,16 @@
-# ContactChooser plugin for Cordova / PhoneGap
+# ContactChooser plugin for Cordova 2.x
 
-This Plugin brings up a native iOS or Android contact-picker overlay, accessing the addressbook and returning the selected contact's name and email.
+This plugin brings up a native iOS or Android contact-picker overlay, accessing the address book and returning the selected contact's name and email.
 
 ## Usage
 
 Example Usage
 
 ```js
-window.plugins.ContactChooser.chooseContact(function(contactInfo) {
-    alert(contactInfo.displayName + " " + contactInfo.email);
+window.plugins.ContactChooser.chooseContact(function (contactInfo) {
+    setTimeout(function () { // use timeout to fix iOS alert problem
+        alert(contactInfo.displayName + " " + contactInfo.email);
+    }, 0);
 });
 ```
 
@@ -23,7 +25,7 @@ The method which will return a JSON. Example:
 
 ## Requirements
 
-This has been successfully tested from Cordova 2.2.0 through to version 2.7.0.
+This has been successfully tested from Cordova 2.2.0 through to version 2.9.0.
 
 ## iOS
 
