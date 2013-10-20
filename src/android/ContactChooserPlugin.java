@@ -19,12 +19,12 @@ public class ContactChooserPlugin extends CordovaPlugin {
 
     private static final int CHOOSE_CONTACT = 1;
 
-	@Override
-	public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
+    @Override
+    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
         this.callbackContext = callbackContext;
-	    this.context = cordova.getActivity().getApplicationContext();
+        this.context = cordova.getActivity().getApplicationContext();
 
-		if (action.equals("chooseContact")) {
+        if (action.equals("chooseContact")) {
 
             Intent intent = new Intent(Intent.ACTION_PICK,
                     ContactsContract.CommonDataKinds.Email.CONTENT_URI);
@@ -34,17 +34,17 @@ public class ContactChooserPlugin extends CordovaPlugin {
             r.setKeepCallback(true);
             callbackContext.sendPluginResult(r);
             return true;
-		}
+        }
 
-		return false;
-	}
+        return false;
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
 
             Uri contactData = data.getData();
-            Cursor c =  context.getContentResolver().query(contactData, null, null, null, null);
+            Cursor c = context.getContentResolver().query(contactData, null, null, null, null);
 
             if (c.moveToFirst()) {
                 try {
