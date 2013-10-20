@@ -4,8 +4,8 @@
 @implementation ContactChooser
 @synthesize callbackID;
 
-- (void) chooseContact:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options{
-    self.callbackID = [arguments objectAtIndex:0];
+- (void) chooseContact:(CDVInvokedUrlCommand*)command{
+    self.callbackID = command.callbackId;
     
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
@@ -21,8 +21,8 @@
     {
         ABMultiValueRef multi = ABRecordCopyValue(person, kABPersonEmailProperty);
         int index = ABMultiValueGetIndexForIdentifier(multi, identifier);
-        NSString *email = (NSString *)ABMultiValueCopyValueAtIndex(multi, index);
-        NSString *displayName = (NSString *)ABRecordCopyCompositeName(person);
+        NSString *email = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, index);
+        NSString *displayName = (__bridge NSString *)ABRecordCopyCompositeName(person);
 
         NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
         [contact setObject:email forKey: @"email"];
