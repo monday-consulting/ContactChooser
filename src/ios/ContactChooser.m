@@ -4,9 +4,8 @@
 @implementation ContactChooser
 @synthesize callbackID;
 
-- (void) chooseContact:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options{
-    self.callbackID = [arguments objectAtIndex:0];
-    
+- (void) chooseContact:(CDVInvokedUrlCommand*)command{
+    self.callbackID = command.callbackId;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     [self.viewController presentModalViewController:picker animated:YES];
