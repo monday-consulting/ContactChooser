@@ -19,7 +19,7 @@
             function alertContact() {
                 window.plugins.ContactChooser.chooseContact(function(contactInfo) {
                     setTimeout(function() { // use timeout to fix iOS alert problem
-                        alert(contactInfo.displayName + " " + contactInfo.email);
+                        alert(contactInfo.displayName + " " + contactInfo.email + " " + contactInfo.phoneNumber);
                     }, 0);
                 });
             }

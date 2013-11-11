@@ -44,16 +44,29 @@ public class ContactChooserPlugin extends CordovaPlugin {
         if (resultCode == Activity.RESULT_OK) {
 
             Uri contactData = data.getData();
-            Cursor c =  context.getContentResolver().query(contactData, null, null, null, null);
+            ContentResolver resolver = context.getContentResolver();
+            Cursor c =  resolver.query(contactData, null, null, null, null);
 
             if (c.moveToFirst()) {
                 try {
+                    String contactId = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Email.CONTACT_ID));
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
                     String email = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
+                    String phoneNumber = "";
+                    if (Integer.parseInt(c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                        String query = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
+                        Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                                new String[]{ contactId }, null);
+                        phoneCursor.moveToFirst();
+                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        phoneCursor.close();
+                    }
 
                     JSONObject contact = new JSONObject();
                     contact.put("email", email);
                     contact.put("displayName", name);
+                    contact.put("phoneNumber", phoneNumber);
                     callbackContext.success(contact);
 
                 } catch (Exception e) {

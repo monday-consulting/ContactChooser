@@ -23,10 +23,19 @@
         int index = ABMultiValueGetIndexForIdentifier(multi, identifier);
         NSString *email = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, index);
         NSString *displayName = (__bridge NSString *)ABRecordCopyCompositeName(person);
+        ABMultiValueRef multiPhones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        NSString* phoneNumber = @"";
+        for(CFIndex i = 0; i < ABMultiValueGetCount(multiPhones); i++) {
+            if(identifier == ABMultiValueGetIdentifierAtIndex (multiPhones, i)) {
+                phoneNumber = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multiPhones, i);
+                break;
+            }
+        }
 
         NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
         [contact setObject:email forKey: @"email"];
         [contact setObject:displayName forKey: @"displayName"];
+        [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
         [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
         [self.viewController dismissModalViewControllerAnimated:YES];
