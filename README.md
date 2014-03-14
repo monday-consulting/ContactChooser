@@ -26,7 +26,7 @@ The method which will return a JSON. Example:
 
 ## Requirements
 
-This has been successfully tested for the latest version of Cordova (3.1.0).
+This works with Cordova 3.0+ and has been successfully tested for the latest version (3.4.0).
 
 You're using prior versions of Cordova? Check out our cordova-2.x branch.
 
