@@ -21,6 +21,10 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_CONTACTS" />
+        </config-file>
+
         <source-file src="src/android/ContactChooserPlugin.java" target-dir="src/com/monday/cordova" />
 
     </platform>
