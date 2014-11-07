@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="com.monday.contact-chooser"
-        version="0.2">
+        version="0.3">
 
     <name>Contact Chooser</name>
     <description>Native contact-picker overlay, accessing the address book</description>
