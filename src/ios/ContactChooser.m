@@ -63,7 +63,8 @@
     [contact setObject:displayName forKey: @"displayName"];
     [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
-    [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact]toSuccessCallbackString:self.callbackID]];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact];
+    [self.commandDelegate sendPluginResult:result callbackId:self.callbackID];
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
     return NO;
 }
@@ -73,11 +74,12 @@
     return YES;
 }
 
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                messageAsString:@"People picker abort"];
+    [self.commandDelegate sendPluginResult:result callbackId:self.callbackID];
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
-    [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                                              messageAsString:@"People picker abort"]
-                                            toErrorCallbackString:self.callbackID]];
 }
 
 @end
