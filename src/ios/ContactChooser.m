@@ -58,7 +58,7 @@
     }
 
     // stick everything together
-    NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
+    NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:3];
     [contact setObject:email forKey: @"email"];
     [contact setObject:displayName forKey: @"displayName"];
     [contact setObject:phoneNumber forKey: @"phoneNumber"];
