@@ -27,8 +27,9 @@ public class ContactChooserPlugin extends CordovaPlugin {
 
 		if (action.equals("chooseContact")) {
 
-            Intent intent = new Intent(Intent.ACTION_PICK,
-                    ContactsContract.CommonDataKinds.Email.CONTENT_URI);
+            Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+            intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+
             cordova.startActivityForResult(this, intent, CHOOSE_CONTACT);
 
             PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
